@@ -38,7 +38,7 @@ end
 bash "insert_line" do
   user "root"
   code <<-EOS
-  echo "CustomLog '|/usr/bin/logger -p local1.info -t HTTP'" >> /home/s4ds/Cheftest.conf
+  echo "CustomLog '|/usr/bin/logger -p local1.info -t HTTP'" >> /etc/httpd/sites-available/default
   EOS
 end
 #reiniciar servicio
