@@ -34,6 +34,7 @@ ruby_block "edit home s4ds rsyslog.conf" do
   end
 end
 
+
 bash "insert_line" do
   user "root"
   code <<-EOS
@@ -41,20 +42,6 @@ bash "insert_line" do
   EOS
 end
 #reiniciar servicio
-service "rsyslog" do
-  action :restart
-end
-
-CustomLog /var/log/httpd/access.log combined
-
-ruby_block "edit home s4ds rsyslog.conf" do
-  block do
-    rf = Chef::Util::FileEdit.new("/etc/httpd/sites-available/default")
-    rf.search_file_replace_line(/CustomLog /var/log/httpd/access.log combined/,"CustomLog "|/usr/bin/logger -p local1.info -t HTTP" combined")
-    rf.write_file
-  end
-end
-
 service "rsyslog" do
   action :restart
 end
