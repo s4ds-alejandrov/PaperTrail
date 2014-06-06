@@ -14,7 +14,7 @@ end
 
 ruby_block "edit_rsyslog_conf" do
   block do
-    bc = Chef::Util::FileEdit.new("/cat/rsyslog.conf")
+    bc = Chef::Util::FileEdit.new("etc/rsyslog.conf")
     bc.insert_line_if_no_match(/# something./,"*.* @logs.papertrailapp.com:39160")
     bc.insert_line_if_no_match(/# something./,"local0.*   @logs.papertrailapp.com:39160")
     bc.write_file
