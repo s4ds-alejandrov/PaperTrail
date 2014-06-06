@@ -12,10 +12,10 @@ end
 
 #edicion Archivos para papertrail
 
-ruby_block "edit rsyslog.conf" do
+ruby_block "edit_rsyslog_conf" do
   block do
-    bc = Chef::Util::FileEdit.new("/etc/rsyslog.conf")
-    bc.insert_line_if_no_match(/# of the default configuration above/,"*.* @logs.papertrailapp.com:39160")
+    bc = Chef::Util::FileEdit.new("/cat/rsyslog.conf")
+    bc.insert_line_if_no_match(/# something./,"*.* @logs.papertrailapp.com:39160")
     bc.insert_line_if_no_match(/# something./,"local0.*   @logs.papertrailapp.com:39160")
     bc.write_file
   end
